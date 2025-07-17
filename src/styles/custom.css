@@ -1,0 +1,90 @@
+body {
+  background-color: #141414;
+  color: #fff;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.navbar {
+  background-color: #000;
+  border-bottom: 1px solid #e50914;
+}
+
+.navbar-brand img {
+  height: 40px;
+}
+
+.nav-link, .dropdown-item {
+  color: #fff !important;
+  transition: color 0.3s;
+}
+
+.nav-link:hover, .dropdown-item:hover {
+  color: #e50914 !important;
+}
+
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1516321497487-e288fb19713f');
+  background-size: cover;
+  background-position: center;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: #e50914;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #ccc;
+}
+
+.card {
+  background-color: #1c1c1c;
+  border: none;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-img-top {
+  object-fit: cover;
+  height: 200px;
+}
+
+.btn-primary {
+  background-color: #e50914;
+  border-color: #e50914;
+}
+
+.btn-primary:hover {
+  background-color: #b20710;
+  border-color: #b20710;
+}
+
+.form-control {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.form-control:focus {
+  background-color: #444;
+  border-color: #e50914;
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  .card-img-top {
+    height: 150px;
+  }
+}
