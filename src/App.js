@@ -1,45 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBarForter from './components/NavBarForter';
-import NavHead from './components/NavHead';
-import Clients from './pages/Clients';
-import Recherche from './pages/Recherche';
-import Appels from './pages/Appels';
-import Chat from './pages/Chat';
+import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
+
 import Login from './pages/Login';
-import Register from './pages/Register';
-import './App.css';
+import RegisterClient from './pages/RegisterClient';
+import RegisterJuriste from './pages/RegisterJuriste';
+import Clients from './pages/Clients';
+import Chat from './pages/Chat';
+import Appels from './pages/Appels';
+import Recherche from './pages/Recherche';
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    setIsAuthenticated(!!token);
-  }, []);
-
   return (
-    <Router>
-      <div className="App">
-        <NavHead />
-        {isAuthenticated && <NavBarForter />}
+    <AuthProvider>
+      <Router>
+        <NavBarForter />
         <Routes>
-          <Route path="/login" element={<Login setAuth={setIsAuthenticated} />} />
-          <Route path="/register" element={<Register />} />
-          {isAuthenticated ? (
-            <>
-              <Route path="/clients" element={<Clients />} />
-              <Route path="/recherche" element={<Recherche />} />
-              <Route path="/appels" element={<Appels />} />
-              <Route path="/chat" element={<Chat />} />
-              <Route path="/" element={<Navigate to="/clients" />} />
-            </>
-          ) : (
-            <Route path="*" element={<Navigate to="/login" />} />
-          )}
+          <Route path="/" element={<Login />} />
+          <Route path="/register-client" element={<RegisterClient />} />
+          <Route path="/register-juriste" element={<RegisterJuriste />} />
+          <Route path="/clients" element={<ProtectedRoute><Clients /></ProtectedRoute>} />
+          <Route path="/chat" element={<ProtectedRoute><Chat /></ProtectedRoute>} />
+          <Route path="/appels" element={<ProtectedRoute><Appels /></ProtectedRoute>} />
+          <Route path="/recherche" element={<ProtectedRoute><Recherche /></ProtectedRoute>} />
         </Routes>
-      </div>
-    </Router>
+      </Router>
+    </AuthProvider>
   );
 }
 

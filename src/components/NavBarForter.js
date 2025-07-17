@@ -1,31 +1,17 @@
-// src/components/NavBarForter.js
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import {
-  PeopleFill,
-  Search,
-  TelephoneFill,
-  ChatDotsFill
-} from 'react-bootstrap-icons';
-import './NavBarForter.css';
+import { Link } from 'react-router-dom';
 
-const NavBarForter = () => {
+export default function NavBarForter() {
   return (
-    <nav className="nav-forter bg-primary text-white d-flex justify-content-around align-items-center py-2">
-      <NavLink to="/clients" className="nav-icon text-white" title="Clients">
-        <PeopleFill size={24} />
-      </NavLink>
-      <NavLink to="/recherche" className="nav-icon text-white" title="Recherche">
-        <Search size={24} />
-      </NavLink>
-      <NavLink to="/appels" className="nav-icon text-white" title="Appels">
-        <TelephoneFill size={24} />
-      </NavLink>
-      <NavLink to="/chat" className="nav-icon text-white" title="Chat">
-        <ChatDotsFill size={24} />
-      </NavLink>
+    <nav>
+      <h3>⚖️ Forter Recouvrement</h3>
+      <ul style={{ display: 'flex', gap: '1rem' }}>
+        <li><Link to="/clients">Clients</Link></li>
+        <li><Link to="/chat">Chat</Link></li>
+        <li><Link to="/appels">Appels</Link></li>
+        <li><Link to="/recherche">Recherche</Link></li>
+        <li><Link to="/">Se déconnecter</Link></li>
+      </ul>
     </nav>
   );
-};
-
-export default NavBarForter;
+}
